@@ -8,121 +8,8 @@
     <meta name="author" content="90s.memory.tv@gmail.com">
     <meta name="description" content="Heart Beat Animation">
     <meta name="keywords" content="HTML, CSS, JavaScript">
+    <link rel="stylesheet" href="./style.css">
 </head>
-<style>
-    :root {
-        /* update your color codes here */
-        --pink-light: #ff7eb4;
-        --pink: #ff2581;
-    }
-
-    /* remove/modify body css when updating */
-    body {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
-        height: 100vh;
-        row-gap: 80px;
-    }
-
-    .icon {
-        fill: transparent;
-        stroke: var(--pink);
-        stroke-width: 20;
-        cursor: pointer;
-        position: relative;
-        margin: 30px 0;
-    }
-
-    .icon svg {
-        overflow: visible;
-        width: 14rem;
-    }
-
-    .icon .heart-background {
-        position: absolute;
-        left: 0;
-        right: 0;
-        z-index: -1;
-        stroke: none;
-    }
-
-    .icon path {
-        stroke-dashoffset: 0;
-        stroke-dasharray: 1550;
-        transform-origin: center;
-    }
-
-    .icon .heart-main.hover path {
-        animation: stroke-animation 2s ease-in-out forwards;
-    }
-
-    .scale-in-center {
-        -webkit-animation: scale-in-center 1.2s cubic-bezier(0.250, 0.460, 0.450, 0.940) 5.8s both;
-        animation: scale-in-center 1.2s cubic-bezier(0.250, 0.460, 0.450, 0.940) 5.8s both;
-    }
-
-    .icon .heart-main.hover~.heart-background path {
-        animation: fade-animation 2s ease-in-out forwards;
-    }
-
-    .icon .heart-main.hover+svg path {
-        stroke-dasharray: 1000;
-    }
-
-    @keyframes stroke-animation {
-        0% {
-            stroke-dashoffset: 0
-        }
-
-        30% {
-            stroke-dashoffset: 1550
-        }
-
-        60% {
-            stroke-dashoffset: 3100;
-            fill: transparent;
-            transform: scale(1)
-        }
-
-        80% {
-            fill: var(--pink);
-            transform: scale(1.1)
-        }
-
-        90% {
-            transform: scale(1)
-        }
-
-        100% {
-            stroke-dashoffset: 3100;
-            fill: var(--pink)
-        }
-    }
-
-    @keyframes fade-animation {
-        70% {
-            fill: transparent;
-            transform: scale(1)
-        }
-
-        80% {
-            fill: var(--pink-light);
-            transform: scale(1.1);
-            opacity: 1
-        }
-
-        90% {
-            opacity: 1
-        }
-
-        100% {
-            transform: scale(2.5);
-            opacity: 0
-        }
-    }
-</style>
 
 <body>
     <div class="icon">
@@ -146,22 +33,7 @@
         </svg>
     </div>
     <footer>
-        <script>
-            window.onload = function () {
-                setInterval(() => {
-                    document.querySelector('.icon .heart-main').classList.remove('hover');
-                    document.querySelector('.icon1 .heart-main').classList.remove('hover');
-                    setTimeout(() => {
-                        heartAnimate();
-                    }, 500);
-                }, 2500);
-
-                function heartAnimate() {
-                    document.querySelector('.icon .heart-main').classList.add('hover');
-                    document.querySelector('.icon1 .heart-main').classList.add('hover');
-                }
-            }
-        </script>
+        <script src="./script.js"></script>
     </footer>
 </body>
 
