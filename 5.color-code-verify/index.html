@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="90s.memory.tv@gmail.com">
+    <meta name="description" content="Color code verifier">
+    <meta name="keywords" content="HTML, CSS, JavaScript">
+    <title>Color code verifier</title>
+</head>
+
+<body>
+    <style>
+        #colorPalet {
+            display: block;
+            margin-top: 20px;
+            width: 150px;
+            height: 30px;
+            border-radius: 10px;
+        }
+
+        .error-msg {
+            display: none;
+            color: red;
+            margin-top: 10px;
+        }
+
+        .wrongColorMsg {
+            display: block;
+            margin-top: 10px;
+        }
+    </style>
+    <label>Color Code</label>
+    <input class="input-field" id="colorCode" name="colorCode" type="text" min="3" max="6" value="c4c4c4">
+    <span class="error-msg"></span>
+    <div id="colorPalet"></div>
+    <span class="wrongColorMsg">Default color "BLACK" will be updated on wrong color format</span>
+    <script>
+        window.addEventListener('load', () => {
+            var colorCode = document.getElementById('colorCode');
+            var colorPalet = document.getElementById('colorPalet');
+            var errorMsg = document.querySelector('.error-msg');
+            colorCode.addEventListener('keyup', colorGen);
+            colorGen();
+            function colorGen() {
+                colorCode.value = colorCode.value.replace(/[^a-zA-Z0-9 ]/g, "");
+                if (colorCode.value.length < 7) {
+                    if (colorCode.value.length == 3 || colorCode.value.length == 6) {
+                        colorPalet.style.backgroundColor = '#' + colorCode.value;
+                        console.log(colorCode.value.length);
+                        errorMsg.style.display = 'none';
+                        errorMsg.innerHTML = '';
+                    } else {
+                        colorPalet.style.backgroundColor = '#000000';
+                        showError()
+                    }
+                } else {
+                    colorPalet.style.backgroundColor = '#000000';
+                    showError()
+                }
+            }
+
+            function showError() {
+                errorMsg.style.display = 'block';
+                errorMsg.innerHTML = 'please enter min 3 or max 6 digit to generate a color';
+            }
+        });
+    </script>
+</body>
+
+</html>
